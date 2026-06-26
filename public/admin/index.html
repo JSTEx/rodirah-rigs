@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RODIRAH RIGS | Admin Console</title>
+    <title>RODIRAH RIGS | Panel de Administración</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="admin-style.css">
 </head>
 <body>
@@ -15,17 +14,17 @@
     <div class="login-container" id="login-container">
         <div class="login-card">
             <div class="login-header">
-            <div class="login-logo">
-                <span class="logo-icon">⚙️</span>
-                <span class="logo-text">RODIRAH RIGS</span>
-            </div>
-            <p class="login-subtitle">Sistema de Gestión de Ingeniería</p>
+                <div class="login-logo">
+                    <span class="logo-icon">⚙️</span>
+                    <span class="logo-text">RODIRAH RIGS</span>
+                </div>
+                <p class="login-subtitle">Sistema de Gestión de Ingeniería</p>
             </div>
             
             <form class="login-form" id="login-form">
                 <div class="form-group">
                     <label for="login-email">Correo Electrónico</label>
-                    <input type="email" id="login-email" name="email" required placeholder="admin@techfix.com">
+                    <input type="email" id="login-email" name="email" required placeholder="admin@rodirah.com">
                 </div>
                 
                 <div class="form-group">
@@ -49,70 +48,106 @@
 
     <!-- Dashboard -->
     <div class="dashboard" id="dashboard" style="display: none;">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-logo">
-                <span class="logo-icon">⚙️</span>
-                <span class="logo-text">RODIRAH RIGS</span>
+        <!-- Header Superior -->
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="brand">
+                    <span class="brand-icon">⚙️</span>
+                    <span class="brand-text">RODIRAH RIGS</span>
+                </div>
             </div>
-        </div>
             
-            <nav class="sidebar-nav">
-                <a href="#dashboard" class="nav-item active" data-section="dashboard">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="3" width="7" height="7"></rect>
-                        <rect x="14" y="14" width="7" height="7"></rect>
-                        <rect x="3" y="14" width="7" height="7"></rect>
-                    </svg>
-                    <span>Dashboard</span>
-                </a>
+            <nav class="main-nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
                 
-                <a href="#hardware-rigs" class="nav-item" data-section="hardware-rigs">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                    <span>Hardware RIGS</span>
-                </a>
+                <div class="nav-dropdown">
+                    <a href="#categorias" class="nav-link dropdown-toggle">
+                        Categorías
+                    </a>
+                </div>
                 
-                <a href="#tech-repair" class="nav-item" data-section="tech-repair">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                    </svg>
-                    <span>Tech & Repair</span>
-                </a>
+                <div class="nav-dropdown">
+                    <a href="#ofertas" class="nav-link dropdown-toggle">
+                        Ofertas ▾
+                    </a>
+                </div>
                 
-                <a href="#systems-dev" class="nav-item" data-section="systems-dev">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="16 18 22 12 16 6"></polyline>
-                        <polyline points="8 6 2 12 8 18"></polyline>
-                    </svg>
-                    <span>Systems & Dev</span>
-                </a>
+                <div class="nav-dropdown">
+                    <a href="#descuentos" class="nav-link dropdown-toggle">
+                        Descuentos ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#ordenes" class="nav-link dropdown-toggle">
+                        Órdenes ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#informes" class="nav-link dropdown-toggle">
+                        Informes ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#metas" class="nav-link dropdown-toggle">
+                        Metas de ventas ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#clientes" class="nav-link dropdown-toggle">
+                        Seguimiento de clientes ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#estadisticas" class="nav-link dropdown-toggle">
+                        Estadísticas ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#mensajes" class="nav-link dropdown-toggle">
+                        Mensajes automáticos ▾
+                    </a>
+                </div>
+                
+                <div class="nav-dropdown">
+                    <a href="#cotizador" class="nav-link dropdown-toggle">
+                        Cotizador ▾
+                    </a>
+                </div>
             </nav>
             
-            <div class="sidebar-footer">
-                <button class="btn-logout" id="btn-logout">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                        <polyline points="16 17 21 12 16 7"></polyline>
-                        <line x1="21" y1="12" x2="9" y2="12"></line>
-                    </svg>
-                    <span>Cerrar Sesión</span>
-                </button>
+            <div class="header-right">
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <span class="user-name" id="user-name">Admin</span>
+                    <button class="btn-logout" id="btn-logout">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </aside>
+        </header>
 
         <!-- Contenido Principal -->
         <main class="main-content">
             <!-- Dashboard Section -->
             <section class="content-section active" id="section-dashboard">
                 <div class="section-header">
-                    <h1>RODIRAH RIGS | Dashboard</h1>
-                    <p class="section-subtitle">Centro de control de ingeniería de hardware y sistemas</p>
+                    <h1>Dashboard</h1>
+                    <p class="section-subtitle">Resumen general del sistema</p>
                 </div>
 
                 <div class="stats-grid">
@@ -188,211 +223,11 @@
                 </div>
             </section>
 
-            <!-- Hardware RIGS Section -->
-            <section class="content-section" id="section-hardware-rigs">
+            <!-- Órdenes Section -->
+            <section class="content-section" id="section-ordenes">
                 <div class="section-header">
-                    <h1>Hardware RIGS</h1>
-                    <p class="section-subtitle">Ensamble y customización de equipos de alto rendimiento</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                <line x1="8" y1="21" x2="16" y2="21"></line>
-                                <line x1="12" y1="17" x2="12" y2="21"></line>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">24</div>
-                            <div class="stat-label">Rigs Ensamblados</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">18</div>
-                            <div class="stat-label">En Proceso</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">156</div>
-                            <div class="stat-label">Componentes Integrados</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>ID RIG</th>
-                                <th>Cliente</th>
-                                <th>Tipo</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="hardware-rigs-tbody">
-                            <!-- Datos dinámicos -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Tech & Repair Section -->
-            <section class="content-section" id="section-tech-repair">
-                <div class="section-header">
-                    <h1>Tech & Repair</h1>
-                    <p class="section-subtitle">Diagnóstico avanzado, reparación y mantenimiento profundo</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">89</div>
-                            <div class="stat-label">Reparaciones Realizadas</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">En Diagnóstico</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">98%</div>
-                            <div class="stat-label">Tasa de Éxito</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>ID Reparación</th>
-                                <th>Cliente</th>
-                                <th>Componente</th>
-                                <th>Fecha</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tech-repair-tbody">
-                            <!-- Datos dinámicos -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Systems & Dev Section -->
-            <section class="content-section" id="section-systems-dev">
-                <div class="section-header">
-                    <h1>Systems & Dev</h1>
-                    <p class="section-subtitle">Optimización de software y desarrollo de soluciones a medida</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">45</div>
-                            <div class="stat-label">Proyectos Desarrollados</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">8</div>
-                            <div class="stat-label">En Desarrollo</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                            </svg>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">Satisfacción</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>ID Proyecto</th>
-                                <th>Cliente</th>
-                                <th>Tipo</th>
-                                <th>Fecha Inicio</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="systems-dev-tbody">
-                            <!-- Datos dinámicos -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Clientes Section -->
-            <section class="content-section" id="section-clientes">
-                <div class="section-header">
-                    <h1>Clientes</h1>
-                    <p class="section-subtitle">Base de datos de clientes</p>
+                    <h1>Órdenes de Venta</h1>
+                    <p class="section-subtitle">Gestión de cotizaciones y ventas</p>
                 </div>
 
                 <!-- Barra de Búsqueda Avanzada -->

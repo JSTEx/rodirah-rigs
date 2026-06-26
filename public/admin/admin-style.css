@@ -1,28 +1,37 @@
 /* ============================================
-   RODIRAH RIGS | ADMIN CONSOLE - ESTILOS MINIMALISTAS
-   Diseño: Minimalismo "Vivo" - Ingeniería Profesional
+   RODIRAH RIGS | ADMIN CONSOLE - ESTILOS KPC
+   Diseño: Minimalista Profesional - Inspirado en KPC
    ============================================ */
 
 /* ============================================
    VARIABLES CSS - TEMA OSCURO (DEFAULT)
    ============================================ */
 :root {
-    /* Paleta Minimalista */
-    --bg-primary: #0A0F1A;
-    --bg-secondary: #111827;
-    --bg-tertiary: #1F2937;
-    --bg-card: #151B2B;
+    /* Paleta KPC - Grises y Azul */
+    --bg-primary: #1a1d23;
+    --bg-secondary: #242830;
+    --bg-tertiary: #2d323c;
+    --bg-card: #1a1d23;
+    --bg-header: #2d323c;
     
     /* Texto */
-    --text-primary: #F9FAFB;
-    --text-secondary: #9CA3AF;
-    --text-tertiary: #6B7280;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b8c4;
+    --text-tertiary: #6b7280;
     
-    /* Acento - Azul Eléctrico Sofisticado */
-    --accent: #3B82F6;
-    --accent-hover: #2563EB;
+    /* Acento - Azul KPC */
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
     --accent-subtle: rgba(59, 130, 246, 0.1);
     --accent-glow: rgba(59, 130, 246, 0.2);
+    
+    /* Rojo KPC */
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
+    
+    /* Verde */
+    --success: #16a34a;
+    --warning: #f59e0b;
     
     /* Bordes y Sombras */
     --border-color: rgba(255, 255, 255, 0.08);
@@ -32,35 +41,35 @@
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
     
     /* Dimensiones */
-    --radius-sm: 6px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
     
     /* Transiciones */
     --transition: all 0.2s ease;
     --transition-slow: all 0.3s ease;
     
-    /* Sidebar */
-    --sidebar-width: 260px;
+    /* Header */
+    --header-height: 60px;
 }
 
 /* ============================================
    TEMA CLARO
    ============================================ */
 [data-theme="light"] {
-    --bg-primary: #FAFBFC;
-    --bg-secondary: #FFFFFF;
-    --bg-tertiary: #F3F4F6;
-    --bg-card: #FFFFFF;
+    --bg-primary: #f9fafb;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f3f4f6;
+    --bg-card: #ffffff;
+    --bg-header: #ffffff;
     
     --text-primary: #111827;
-    --text-secondary: #6B7280;
-    --text-tertiary: #9CA3AF;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
     
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
     --accent-subtle: rgba(37, 99, 235, 0.08);
-    --accent-glow: rgba(37, 99, 235, 0.15);
     
     --border-color: rgba(0, 0, 0, 0.08);
     --border-hover: rgba(0, 0, 0, 0.15);
@@ -236,36 +245,30 @@ body {
 }
 
 /* ============================================
-   DASHBOARD LAYOUT
+   ADMIN HEADER (Estilo KPC)
    ============================================ */
-.dashboard {
-    display: flex;
-    min-height: 100vh;
-}
-
-/* ============================================
-   SIDEBAR
-   ============================================ */
-.sidebar {
+.admin-header {
     position: fixed;
     top: 0;
     left: 0;
-    width: var(--sidebar-width);
-    height: 100vh;
-    background-color: var(--bg-secondary);
-    border-right: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-    transition: var(--transition);
-}
-
-.sidebar-header {
-    padding: 1.5rem;
+    right: 0;
+    height: var(--header-height);
+    background-color: var(--bg-header);
     border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
 }
 
-.sidebar-logo {
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.brand {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -275,90 +278,116 @@ body {
     letter-spacing: -0.01em;
 }
 
-.sidebar-logo .logo-icon {
+.brand-icon {
     font-size: 1.25rem;
 }
 
-.sidebar-logo .logo-text {
+.brand-text {
     background: linear-gradient(135deg, var(--text-primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.sidebar-nav {
-    flex: 1;
-    padding: 1.5rem 1rem;
+/* ============================================
+   MAIN NAV (Estilo KPC)
+   ============================================ */
+.main-nav {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    justify-content: center;
 }
 
-.nav-item {
+.nav-link {
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+}
+
+.nav-link.active {
+    color: var(--accent);
+    background-color: var(--accent-subtle);
+}
+
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+/* ============================================
+   HEADER RIGHT (Usuario)
+   ============================================ */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-menu {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.875rem 1rem;
-    color: var(--text-secondary);
-    border-radius: var(--radius-md);
-    transition: var(--transition);
-    font-weight: 500;
-    font-size: 0.9375rem;
-    text-decoration: none;
 }
 
-.nav-item:hover {
-    background-color: var(--bg-tertiary);
-    color: var(--text-primary);
-}
-
-.nav-item.active {
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     background-color: var(--accent-subtle);
     color: var(--accent);
-}
-
-.nav-item svg {
-    flex-shrink: 0;
-}
-
-.sidebar-footer {
-    padding: 1.5rem;
-    border-top: 1px solid var(--border-color);
-}
-
-.btn-logout {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.875rem 1rem;
-    background-color: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9375rem;
+}
+
+.user-name {
+    color: var(--text-primary);
     font-weight: 500;
+    font-size: 0.9375rem;
+}
+
+.btn-logout {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: var(--transition);
 }
 
 .btn-logout:hover {
-    border-color: #EF4444;
-    color: #EF4444;
-    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--danger);
+    color: var(--danger);
+    background-color: rgba(220, 38, 38, 0.1);
 }
 
 /* ============================================
    MAIN CONTENT
    ============================================ */
 .main-content {
-    flex: 1;
-    margin-left: var(--sidebar-width);
+    margin-top: var(--header-height);
     padding: 2rem 3rem;
     background-color: var(--bg-primary);
-    min-height: 100vh;
+    min-height: calc(100vh - var(--header-height));
 }
 
 /* ============================================
@@ -675,9 +704,9 @@ body {
 }
 
 .btn-action.delete:hover {
-    border-color: #EF4444;
-    color: #EF4444;
-    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--danger);
+    color: var(--danger);
+    background-color: rgba(220, 38, 38, 0.1);
 }
 
 /* Empty State */
@@ -777,12 +806,11 @@ body {
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 968px) {
-    .sidebar {
-        transform: translateX(-100%);
+    .main-nav {
+        display: none;
     }
     
     .main-content {
-        margin-left: 0;
         padding: 1.5rem;
     }
     
@@ -806,6 +834,18 @@ body {
 @media (max-width: 640px) {
     .login-card {
         padding: 2rem 1.5rem;
+    }
+    
+    .admin-header {
+        padding: 0 1rem;
+    }
+    
+    .brand-text {
+        display: none;
+    }
+    
+    .user-name {
+        display: none;
     }
     
     .stats-grid {
