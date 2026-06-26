@@ -29,25 +29,33 @@ Landing Page pública + Panel Administrativo privado para servicios profesionale
 
 ## 🎨 Sistema de Diseño
 
+### Filosofía: Minimalismo "Vivo"
+Diseño limpio, profesional y sofisticado que transmite ingeniería de precisión.
+
 ### Tema Oscuro (Por Defecto)
 - Fondo principal: `#0A0F1A`
-- Paneles: `#141C2F`
-- Texto: `#F3F4F6`
-- Acento: `#00D2FF` (Azul eléctrico)
+- Fondo secundario: `#111827`
+- Paneles: `#151B2B`
+- Texto principal: `#F9FAFB`
+- Texto secundario: `#9CA3AF`
+- Acento: `#3B82F6` (Azul Eléctrico Sofisticado)
 
 ### Tema Claro
-- Fondo: `#F9FAFB`
+- Fondo: `#FAFBFC`
 - Paneles: `#FFFFFF`
 - Texto: `#111827`
-- Acento: `#00D2FF` (mantiene)
+- Acento: `#2563EB` (Azul más sólido)
 
 ### Características
 - ✅ Modo oscuro/claro con persistencia en localStorage
-- ✅ Transiciones suaves (0.3s)
-- ✅ Bordes redondeados (8px)
-- ✅ Sombras suaves
+- ✅ Transiciones suaves (0.2s - 0.3s)
+- ✅ Bordes sutiles (6px - 12px)
+- ✅ Sombras minimalistas
+- ✅ Espaciado generoso para "respiración"
+- ✅ Tipografía Inter (limpia y moderna)
 - ✅ Diseño responsive (mobile-first)
-- ✅ Animaciones CSS modernas
+- ✅ Animaciones de entrada suaves
+- ✅ Sin efectos de neón o brillos intensos
 
 ## ⚙️ Configuración de Firebase
 
@@ -186,16 +194,21 @@ vercel
 
 ### Configuración de Rutas
 
-Crea un archivo `vercel.json` en la raíz:
+El archivo `vercel.json` ya está configurado con URLs limpias:
 
 ```json
 {
   "rewrites": [
+    { "source": "/admin/(.*)", "destination": "/admin/$1" },
     { "source": "/admin", "destination": "/admin/index.html" },
-    { "source": "/admin/(.*)", "destination": "/admin/$1" }
+    { "source": "/inicio", "destination": "/index.html" },
+    { "source": "/servicios", "destination": "/index.html" },
+    { "source": "/contacto", "destination": "/index.html" }
   ]
 }
 ```
+
+Esto permite navegación sin hash (`/inicio`, `/servicios`, `/contacto`) y acceso al panel en `/admin`.
 
 ## 🔐 Seguridad
 

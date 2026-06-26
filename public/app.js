@@ -1,10 +1,11 @@
 // ============================================
-// TECNFIX - LÓGICA PÚBLICA
+// RODIRAH // RIGS - LÓGICA PÚBLICA
+// Landing Page + Cotizador + Firebase
 // ============================================
 
 // ============================================
 // CONFIGURACIÓN DE FIREBASE
-// IMPORTANTE: Reemplaza estos valores con tus credenciales de Firebase
+// IMPORTANTE: Reemplaza con tus credenciales
 // ============================================
 const firebaseConfig = {
     apiKey: "TU_API_KEY_AQUI",
@@ -17,44 +18,96 @@ const firebaseConfig = {
 
 // Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 const db = firebase.firestore();
 
 // ============================================
-// GESTIÓN DEL TEMA (OSCURO/CLARO)
+// SISTEMA DE NAVEGACIÓN SIN HASH
+// ============================================
+const rutas = {
+    '/inicio': 'inicio',
+    '/servicios': 'servicios',
+    '/contacto': 'contacto'
+};
+
+function manejarNavegacion() {
+    const path = window.location.pathname;
+    const seccionId = rutas[path] || 'inicio';
+    
+    // Scroll suave a la sección
+    const seccion = document.getElementById(seccionId);
+    if (seccion) {
+        seccion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Actualizar menú activo
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === path) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Escuchar cambios de URL
+window.addEventListener('popstate', manejarNavegacion);
+
+// Interceptar clicks en enlaces de navegación
+document.addEventListener('DOMContentLoaded', () => {
+    // Manejar navegación inicial
+    manejarNavegacion();
+    
+    // Interceptar clicks en enlaces internos
+    document.querySelectorAll('a[href^="/"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            
+            // Solo interceptar rutas internas
+            if (rutas[href]) {
+                e.preventDefault();
+                
+                // Actualizar URL sin recargar
+                window.history.pushState({}, '', href);
+                
+                // Manejar navegación
+                manejarNavegacion();
+                
+                // Cerrar menú móvil si está abierto
+                const menu = document.getElementById('menu-popup');
+                const burger = document.getElementById('hamburger-menu');
+                if (menu) menu.classList.remove('active');
+                if (burger) burger.classList.remove('active');
+            }
+        });
+    });
+});
+
+// ============================================
+// GESTIÓN DE TEMA (OSCURO/CLARO)
 // ============================================
 const themeToggle = document.getElementById('theme-toggle');
 const htmlElement = document.documentElement;
 
-// Cargar tema guardado al iniciar
-function cargarTemaGuardado() {
-    const temaGuardado = localStorage.getItem('tema') || 'oscuro';
-    if (temaGuardado === 'claro') {
-        htmlElement.setAttribute('data-theme', 'light');
-    } else {
-        htmlElement.removeAttribute('data-theme');
+// Cargar tema guardado
+function cargarTema() {
+    const temaGuardado = localStorage.getItem('theme');
+    if (temaGuardado) {
+        htmlElement.setAttribute('data-theme', temaGuardado);
     }
 }
 
 // Alternar tema
-function alternarTema() {
-    const temaActual = htmlElement.getAttribute('data-theme');
-    if (temaActual === 'light') {
-        htmlElement.removeAttribute('data-theme');
-        localStorage.setItem('tema', 'oscuro');
-    } else {
-        htmlElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('tema', 'claro');
-    }
-}
-
-// Event listener para el botón de tema
 if (themeToggle) {
-    themeToggle.addEventListener('click', alternarTema);
+    themeToggle.addEventListener('click', () => {
+        const temaActual = htmlElement.getAttribute('data-theme');
+        const nuevoTema = temaActual === 'light' ? 'dark' : 'light';
+        
+        htmlElement.setAttribute('data-theme', nuevoTema);
+        localStorage.setItem('theme', nuevoTema);
+    });
 }
 
 // Cargar tema al iniciar
-cargarTemaGuardado();
+cargarTema();
 
 // ============================================
 // MENÚ HAMBURGUESA (MÓVIL)
@@ -68,13 +121,12 @@ if (hamburgerMenu && menuPopup) {
         menuPopup.classList.toggle('active');
     });
 
-    // Cerrar menú al hacer clic en un enlace
-    const menuLinks = menuPopup.querySelectorAll('.menu-link');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
+    // Cerrar menú al hacer click fuera
+    document.addEventListener('click', (e) => {
+        if (!hamburgerMenu.contains(e.target) && !menuPopup.contains(e.target)) {
             hamburgerMenu.classList.remove('active');
             menuPopup.classList.remove('active');
-        });
+        }
     });
 }
 
@@ -95,28 +147,29 @@ if (contactForm) {
             equipo: document.getElementById('equipo').value,
             problema: document.getElementById('problema').value,
             fecha: firebase.firestore.FieldValue.serverTimestamp(),
-            estado: 'pendiente'
+            estado: 'pendiente',
+            categoria: 'general'
         };
-
+        
         try {
             // Guardar en Firestore
             await db.collection('solicitudes').add(datos);
             
             // Mostrar mensaje de éxito
-            alert('¡Solicitud enviada con éxito! Te contactaremos pronto.');
+            alert('✅ Solicitud enviada exitosamente. Te contactaremos pronto.');
             
             // Limpiar formulario
             contactForm.reset();
             
         } catch (error) {
             console.error('Error al enviar solicitud:', error);
-            alert('Error al enviar la solicitud. Por favor, intenta de nuevo.');
+            alert('❌ Error al enviar la solicitud. Por favor, intenta de nuevo.');
         }
     });
 }
 
 // ============================================
-// FUNCIONES DE LA CALCULADORA (COTIZADOR)
+// COTIZADOR FLOTANTE
 // ============================================
 
 function abrirCalculadoraDesdeMenu() {
@@ -337,3 +390,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectOp = document.getElementById("calc-op");
     if(selectOp) selectOp.addEventListener("change", actualizarFormularioCalculadora);
 });
+
+// ============================================
+// SCROLL REVEAL ANIMATIONS
+// ============================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observar elementos para animación
+document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.service-card, .stat-card, .info-card');
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+});
+
+// ============================================
+// INICIALIZACIÓN
+// ============================================
+console.log('RODIRAH // RIGS - Landing Page Inicializada');
