@@ -57,6 +57,8 @@ if (loginForm) {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             loginError.textContent = '';
+            // Redirigir al dashboard después de login exitoso
+            window.location.href = '/admin';
         } catch (error) {
             console.error('Error de login:', error);
             let mensaje = 'Error al iniciar sesión';
