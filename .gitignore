@@ -8,6 +8,9 @@
 service-account.json
 *.json
 !service-account.json.example
+!vercel.json
+!firebase-config.js
+!firestore.rules
 
 # ============================================
 # Node.js
