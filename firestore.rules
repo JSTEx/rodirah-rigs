@@ -1,0 +1,146 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================
+    // COLECCIÓN: solicitudes
+    // Formulario público de contacto
+    // ============================================
+    match /solicitudes/{solicitud} {
+      // Cualquiera puede leer (para ver sus propias solicitudes)
+      allow read: if true;
+      
+      // Cualquiera puede crear una solicitud
+      allow create: if true;
+      
+      // Solo usuarios autenticados pueden modificar/eliminar
+      allow update, delete: if request.auth != null;
+      
+      // Validación de datos
+      allow create: if request.resource.data.nombre is string &&
+                    request.resource.data.telefono is string &&
+                    request.resource.data.email is string &&
+                    request.resource.data.equipo is string &&
+                    request.resource.data.problema is string &&
+                    request.resource.data.fecha is timestamp &&
+                    request.resource.data.estado is string;
+    }
+    
+    // ============================================
+    // COLECCIÓN: hardware_rigs
+    // Proyectos de ensamble custom
+    // ============================================
+    match /hardware_rigs/{rig} {
+      // Solo usuarios autenticados pueden leer
+      allow read: if request.auth != null;
+      
+      // Solo usuarios autenticados pueden escribir
+      allow write: if request.auth != null;
+      
+      // Validación de datos
+      allow create: if request.resource.data.idRig is string &&
+                    request.resource.data.cliente is string &&
+                    request.resource.data.tipoRig is string &&
+                    request.resource.data.componentes is map &&
+                    request.resource.data.costoTotal is number &&
+                    request.resource.data.fechaInicio is timestamp &&
+                    request.resource.data.estado is string;
+    }
+    
+    // ============================================
+    // COLECCIÓN: tech_repair
+    // Reparaciones y mantenimiento
+    // ============================================
+    match /tech_repair/{reparacion} {
+      // Solo usuarios autenticados pueden leer
+      allow read: if request.auth != null;
+      
+      // Solo usuarios autenticados pueden escribir
+      allow write: if request.auth != null;
+      
+      // Validación de datos
+      allow create: if request.resource.data.idReparacion is string &&
+                    request.resource.data.cliente is string &&
+                    request.resource.data.componente is string &&
+                    request.resource.data.diagnosticoInicial is string &&
+                    request.resource.data.costoTotal is number &&
+                    request.resource.data.fechaIngreso is timestamp &&
+                    request.resource.data.estado is string;
+    }
+    
+    // ============================================
+    // COLECCIÓN: systems_dev
+    // Proyectos de software
+    // ============================================
+    match /systems_dev/{proyecto} {
+      // Solo usuarios autenticados pueden leer
+      allow read: if request.auth != null;
+      
+      // Solo usuarios autenticados pueden escribir
+      allow write: if request.auth != null;
+      
+      // Validación de datos
+      allow create: if request.resource.data.idProyecto is string &&
+                    request.resource.data.cliente is string &&
+                    request.resource.data.tipoProyecto is string &&
+                    request.resource.data.titulo is string &&
+                    request.resource.data.descripcion is string &&
+                    request.resource.data.costoEstimado is number &&
+                    request.resource.data.fechaInicio is timestamp &&
+                    request.resource.data.estado is string;
+    }
+    
+    // ============================================
+    // COLECCIÓN: clientes
+    // Base de datos de clientes
+    // ============================================
+    match /clientes/{cliente} {
+      // Solo usuarios autenticados pueden leer
+      allow read: if request.auth != null;
+      
+      // Solo usuarios autenticados pueden escribir
+      allow write: if request.auth != null;
+      
+      // Validación de datos
+      allow create: if request.resource.data.nombre is string &&
+                    request.resource.data.email is string &&
+                    request.resource.data.telefono is string &&
+                    request.resource.data.fechaRegistro is timestamp;
+    }
+    
+    // ============================================
+    // COLECCIÓN: inventario
+    // Control de componentes
+    // ============================================
+    match /inventario/{item} {
+      // Solo usuarios autenticados pueden leer
+      allow read: if request.auth != null;
+      
+      // Solo usuarios autenticados pueden escribir
+      allow write: if request.auth != null;
+      
+      // Validación de datos
+      allow create: if request.resource.data.codigo is string &&
+                    request.resource.data.nombre is string &&
+                    request.resource.data.categoria is string &&
+                    request.resource.data.marca is string &&
+                    request.resource.data.modelo is string &&
+                    request.resource.data.cantidad is number &&
+                    request.resource.data.costoCompra is number &&
+                    request.resource.data.precioVenta is number &&
+                    request.resource.data.estado is string;
+    }
+    
+    // ============================================
+    // COLECCIÓN: usuarios (opcional)
+    // Para datos adicionales de usuarios autenticados
+    // ============================================
+    match /usuarios/{userId} {
+      // Cada usuario puede leer su propio documento
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // Cada usuario puede escribir en su propio documento
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
