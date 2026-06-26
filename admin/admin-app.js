@@ -5,21 +5,14 @@
 
 // ============================================
 // CONFIGURACIÓN DE FIREBASE
-// IMPORTANTE: Usa las mismas credenciales que en app.js
+// SDK Modular v9+
 // ============================================
-const firebaseConfig = {
-    apiKey: "TU_API_KEY_AQUI",
-    authDomain: "TU_AUTH_DOMAIN_AQUI",
-    projectId: "TU_PROJECT_ID_AQUI",
-    storageBucket: "TU_STORAGE_BUCKET_AQUI",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID_AQUI",
-    appId: "TU_APP_ID_AQUI"
-};
-
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+import { db, auth } from '../firebase-config.js';
+import { 
+    signInWithEmailAndPassword, 
+    signOut, 
+    onAuthStateChanged 
+} from "firebase/auth";
 
 // ============================================
 // VARIABLES GLOBALES
@@ -40,8 +33,8 @@ const loginForm = document.getElementById('login-form');
 const loginError = document.getElementById('login-error');
 const btnLogout = document.getElementById('btn-logout');
 
-// Verificar estado de autenticación al cargar
-auth.onAuthStateChanged((user) => {
+// Verificar estado de autenticación al cargar (SDK Modular)
+onAuthStateChanged(auth, (user) => {
     if (user) {
         loginContainer.style.display = 'none';
         dashboard.style.display = 'flex';
@@ -62,7 +55,7 @@ if (loginForm) {
         const password = document.getElementById('login-password').value;
         
         try {
-            await auth.signInWithEmailAndPassword(email, password);
+            await signInWithEmailAndPassword(auth, email, password);
             loginError.textContent = '';
         } catch (error) {
             console.error('Error de login:', error);
@@ -87,7 +80,7 @@ if (loginForm) {
 if (btnLogout) {
     btnLogout.addEventListener('click', async () => {
         try {
-            await auth.signOut();
+            await signOut(auth);
         } catch (error) {
             console.error('Error al cerrar sesión:', error);
         }

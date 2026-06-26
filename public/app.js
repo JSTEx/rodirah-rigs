@@ -1,24 +1,19 @@
 // ============================================
 // RODIRAH RIGS - LÓGICA PÚBLICA
 // Landing Page + Cotizador + Firebase
+// SDK Modular v9+
 // ============================================
 
 // ============================================
-// CONFIGURACIÓN DE FIREBASE
-// IMPORTANTE: Reemplaza con tus credenciales
+// IMPORTAR FIREBASE (SDK Modular)
 // ============================================
-const firebaseConfig = {
-    apiKey: "TU_API_KEY_AQUI",
-    authDomain: "TU_AUTH_DOMAIN_AQUI",
-    projectId: "TU_PROJECT_ID_AQUI",
-    storageBucket: "TU_STORAGE_BUCKET_AQUI",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID_AQUI",
-    appId: "TU_APP_ID_AQUI"
-};
-
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+import { db } from '../firebase-config.js';
+import { 
+    doc, 
+    addDoc, 
+    collection, 
+    serverTimestamp 
+} from "firebase/firestore";
 
 // ============================================
 // SISTEMA DE NAVEGACIÓN SIN HASH
@@ -146,14 +141,14 @@ if (contactForm) {
             email: document.getElementById('email').value,
             equipo: document.getElementById('equipo').value,
             problema: document.getElementById('problema').value,
-            fecha: firebase.firestore.FieldValue.serverTimestamp(),
+            fecha: serverTimestamp(),
             estado: 'pendiente',
             categoria: 'general'
         };
         
         try {
-            // Guardar en Firestore
-            await db.collection('solicitudes').add(datos);
+            // Guardar en Firestore usando addDoc (SDK Modular)
+            await addDoc(collection(db, 'solicitudes'), datos);
             
             // Mostrar mensaje de éxito
             alert('✅ Solicitud enviada exitosamente. Te contactaremos pronto.');
