@@ -1,5 +1,5 @@
 // ============================================
-// RODIRAH // ADMIN CONSOLE
+// RODIRAH RIGS | ADMIN CONSOLE
 // Sistema de Gestión de Ingeniería
 // ============================================
 
@@ -775,4 +775,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-console.log('RODIRAH // ADMIN CONSOLE - Inicializado correctamente');
+console.log('RODIRAH RIGS | ADMIN CONSOLE - Inicializado correctamente');

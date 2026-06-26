@@ -1,5 +1,5 @@
 // ============================================
-// RODIRAH // RIGS - LÓGICA PÚBLICA
+// RODIRAH RIGS - LÓGICA PÚBLICA
 // Landing Page + Cotizador + Firebase
 // ============================================
 
@@ -423,4 +423,4 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 // INICIALIZACIÓN
 // ============================================
-console.log('RODIRAH // RIGS - Landing Page Inicializada');
+console.log('RODIRAH RIGS - Landing Page Inicializada');

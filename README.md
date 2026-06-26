@@ -1,4 +1,4 @@
-# RODIRAH // RIGS - Ingeniería de Hardware y Sistemas
+# RODIRAH RIGS - Ingeniería de Hardware y Sistemas
 
 Landing Page pública + Panel Administrativo privado para servicios profesionales de ingeniería de hardware.
 
@@ -133,7 +133,7 @@ service cloud.firestore {
 - ✅ Formulario de contacto que guarda en Firestore
 - ✅ Footer con enlaces
 
-### Panel Administrativo (RODIRAH // ADMIN CONSOLE)
+### Panel Administrativo (RODIRAH RIGS | ADMIN CONSOLE)
 - ✅ Sistema de autenticación Firebase
 - ✅ Login/Logout funcional
 - ✅ Dashboard central con métricas
@@ -371,7 +371,7 @@ Este proyecto es de código abierto y está disponible para uso personal y comer
 
 Construido con ❤️ usando HTML5, CSS3, JavaScript vanilla y Firebase.
 
-**RODIRAH // RIGS** - Ingeniería de Hardware y Sistemas
+**RODIRAH RIGS** - Ingeniería de Hardware y Sistemas
 
 ---
 

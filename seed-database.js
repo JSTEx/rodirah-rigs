@@ -1,5 +1,5 @@
 // ============================================
-// RODIRAH // RIGS - SEED DATABASE
+// RODIRAH RIGS - SEED DATABASE
 // Script para inicializar datos de prueba
 // ============================================
 

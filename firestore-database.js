@@ -1,5 +1,5 @@
 // ============================================
-// RODIRAH // RIGS - ESTRUCTURA DE BASE DE DATOS
+// RODIRAH RIGS - ESTRUCTURA DE BASE DE DATOS
 // Firestore Database Schema
 // ============================================
 
